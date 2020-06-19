@@ -1,9 +1,10 @@
 #include <iostream>
 #include <fstream>
+using namespace std;
 
 int N, K;
-int data[K][N];
-
+int data[10][20];
+ 
 bool better(int a, int b, int session)
 {
     int apos, bpos;
@@ -21,18 +22,19 @@ int Nbetter(int a, int b)
         if (better(a,b,session)) total++;
     return total;
 }
-
+ 
 int main(void)
 {
-    std::ifstream fin ("gymnastics.in");
-    std::ofstream fout ("gymnastics.out");
+    ifstream fin ("gymnastics_bronze_dec19-1/1.in");
+    ofstream fout ("gymnastics.out");
     fin >> K >> N;
     for (int k=0; k<K; k++)
         for (int n=0; n<N; n++) 
-            fin >> data[k][n];
+        fin >> data[k][n];
     int answer = 0;
     for (int a=1; a<=N; a++)
         for (int b=1; b<=N; b++)
-            if (Nbetter(a,b) == K) answer++;
+        if (Nbetter(a,b) == K) answer++;
     fout << answer << "\n";
+    return 0;
 }
