@@ -1,72 +1,63 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
 #include <algorithm>
 using namespace std;
- 
-vector<string> cows, beside_a, beside_b, answer;
-int N;
- 
-int where(string c)
-{
-    for (int i=0; i<answer.size(); i++)
-        if (answer[i]==c) return i;
-    return 999;
+
+ofstream fout("lineup.out");
+ifstream fin("lineup.in");
+
+string names[8] = {
+	"Beatrice",
+	"Belinda",
+	"Bella",
+	"Bessie",
+	"Betsy",
+	"Blue",
+	"Buttercup",
+	"Sue"
+};
+
+int n, order[8];
+int conditions[7][2];
+
+int getIndex(string a) {
+	for (int i = 0; i < 8; i++)
+		if (names[i] == a)
+			return i;
+	return -1;
 }
- 
-bool can_go_first(string c)
-{
-    int n = answer.size(), nbrs=0;
-    if (where(c)!=999) return false;
-    for (int i=0; i<N; i++) 
-    {
-        if (beside_a[i]==c && where(beside_b[i])==999) nbrs++;
-        if (beside_b[i]==c && where(beside_a[i])==999) nbrs++;
-    }
-    if (nbrs == 2) return false;
-    if (n>0) 
-    {
-        string last_cow = answer[n-1];
-        for (int i=0; i<N; i++) 
-        {
-            if (beside_a[i]==last_cow && where(beside_b[i])==999 && beside_b[i]!=c) return false;
-            if (beside_b[i]==last_cow && where(beside_a[i])==999 && beside_a[i]!=c) return false;
-        }
-    }
-    return true;
+
+bool works() {
+	int c = 0;
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < 7; j++)
+			if ((conditions[i][0] == order[j] && conditions[i][1] == order[j+1])
+			 || (conditions[i][1] == order[j] && conditions[i][0] == order[j+1])) {
+				c++;
+				break;
+			}
+	return (c == n);
 }
- 
-int main(void)
-{
-    ifstream fin ("lineup.in");
-    ofstream fout ("lineup.out");
-    fin >> N;
-    cows.push_back("Beatrice");
-    cows.push_back("Belinda");
-    cows.push_back("Bella");
-    cows.push_back("Bessie");
-    cows.push_back("Betsy");
-    cows.push_back("Blue");
-    cows.push_back("Buttercup");
-    cows.push_back("Sue");
-    string a, b, t;
-    for (int i=0; i<N; i++) 
-    {
-        fin >> a;
-        fin >> t;
-        fin >> t;
-        fin >> t;
-        fin >> t;
-        fin >> b;
-        beside_a.push_back(a);
-        beside_b.push_back(b);
-    }
-    for (int i=0; i<8; i++) 
-    {
-        int next_cow = 0;
-        while (!can_go_first(cows[next_cow])) next_cow++;
-        answer.push_back(cows[next_cow]);
-        fout << cows[next_cow] << "\n";
-    }
-    return 0;
-    }
+
+int main() {
+	fin >> n;
+	for (int i = 0; i < n; i++) {
+		string temp1, temp2;
+		string trash;
+
+		fin >> temp1 >> trash >> trash >> trash >> trash >> temp2;
+		conditions[i][0] = getIndex(temp1), conditions[i][1] = getIndex(temp2);
+	}
+	for (int i = 0; i < 8; i++)
+		order[i] = i;
+
+	while (!works()) {
+		if (!next_permutation(order, order+8))
+			break;
+	}
+
+	for (int i = 0; i < 8; i++)
+		fout << names[order[i]] << '\n';
+	
+	return 0;
+}
