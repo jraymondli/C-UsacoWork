@@ -4,6 +4,9 @@
         "iosfwd": "cpp",
         "fstream": "cpp",
         "vector": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "type_traits": "cpp",
+        "algorithm": "cpp",
+        "stack": "cpp"
     }
 }
