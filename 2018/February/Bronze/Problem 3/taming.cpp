@@ -1,3 +1,4 @@
+// time: 42 min
 #include <iostream>
 #include <fstream>
 #include <algorithm>
