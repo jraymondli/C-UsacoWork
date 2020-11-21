@@ -4,7 +4,7 @@
 using namespace std;
  
 int N;
- 
+
 int main()
 {
     ifstream fin ("lifeguards.in");
@@ -20,7 +20,6 @@ int main()
 			 min_take_time = A[i][1];
 		 }
 	}
-	
 	for (int i = 0; i < N; i++){
 		int value = 0;
 		for (int j = 0; j < min_take_time; j++){
