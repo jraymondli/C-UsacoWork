@@ -4,12 +4,12 @@
 #include <algorithm>
 using namespace std;
 
-int N;
+ifstream fin ("outofplace.in");
+ofstream fout ("outofplace.out");
 
 int main()
 {
-    ifstream fin ("outofplace.in");
-    ofstream fout ("outofplace.out");
+    int N;
 	fin >> N;
 	int A1[N], A2[N], swaps = 0;
 	for (int i = 0; i < N; i++){
