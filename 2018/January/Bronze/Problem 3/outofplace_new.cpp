@@ -7,7 +7,6 @@ using namespace std;
 
 ifstream fin ("outofplace.in");
 ofstream fout ("outofplace.out");
-
 int main()
 {
     int N, temp = 0, b_index = -1, b_val = -1, swaps, supposed_index, temp1 = 0, temp2 = 0;
@@ -52,6 +51,5 @@ int main()
 	for (int i = 0; i < used_nums.size(); i++){
 		cout << used_nums[i] << "\n";
 	}
-	
 	fout << used_nums.size();
 }
