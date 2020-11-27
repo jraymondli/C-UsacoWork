@@ -26,7 +26,6 @@ int main(void)
         if (cows[i][0] != 0){
             int new_max[3] = {0, 0, 0}; 
             cows_milk[cows[i][0]-1] += cows[i][1];
-            
             if (cows_milk[0] >= cows_milk[1] & cows_milk[0] >= cows_milk[2]) max_val = cows_milk[0];
             if (cows_milk[1] >= cows_milk[0] & cows_milk[1] >= cows_milk[2]) max_val = cows_milk[1];
             if (cows_milk[2] >= cows_milk[1] & cows_milk[2] >= cows_milk[0]) max_val = cows_milk[2];
@@ -39,7 +38,6 @@ int main(void)
                 cows_max[2] = new_max[2];
                 changes++;
             }
-
         }
     }
     fout << changes << "\n";
