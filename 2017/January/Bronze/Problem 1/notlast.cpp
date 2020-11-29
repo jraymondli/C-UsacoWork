@@ -26,7 +26,6 @@ int main(void)
         if (temp_str == "Maggie") milk_generated[5] += temp_val;
         if (temp_str == "Henrietta") milk_generated[6] += temp_val;
     }
-    
     int first_min = 10000, second_min = 10000, cows_good = 0;
     for (int i = 0; i < 7; i++){
         if(milk_generated[i] < first_min){
