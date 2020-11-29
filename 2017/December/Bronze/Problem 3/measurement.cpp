@@ -8,7 +8,7 @@ int cows[100][2], cows_milk[3] = {7, 7, 7}, cows_max[3] = {1, 1, 1};
  
 int main(void)
 {
-    ifstream fin ("measurement.in");
+    ifstream fin ("measurement_bronze_dec17/1.in");
     ofstream fout ("measurement.out");
     int N, temp;
     string cow, value;
