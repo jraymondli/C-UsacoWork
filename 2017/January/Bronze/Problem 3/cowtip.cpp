@@ -15,7 +15,6 @@ int main(void)
     for (int i = 0; i < N; i++){
         fin >> temp;
         for (int j = 0; j < N; j++){
-            cout << temp[j];
             stringstream test;
             test << temp[j];
             test >> cow_array[i][j];
