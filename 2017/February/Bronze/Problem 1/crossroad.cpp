@@ -1,4 +1,4 @@
-//greater than 1 hr
+//26 minutes
 #include <iostream>
 #include <fstream>
 #include <algorithm>
