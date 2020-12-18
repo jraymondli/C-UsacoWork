@@ -1,4 +1,4 @@
-/* 23
+/* 29 minutes
 */
 #include <iostream>
 #include <fstream>
