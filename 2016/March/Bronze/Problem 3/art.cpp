@@ -33,7 +33,7 @@ bool on_top_of(int c1, int c2)
   return false;
 }
 
-int main(void)
+int main()
 {
   ifstream fin ("art.in");
   ofstream fout ("art.out");
