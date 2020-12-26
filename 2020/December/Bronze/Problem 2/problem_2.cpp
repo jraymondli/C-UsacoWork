@@ -1,26 +1,40 @@
-//24 minutes
 #include <iostream>
 #include <fstream>
+#include <cmath>
+#include <algorithm>
 using namespace std;
 
-int ans = 0, freq[52];
-char arr[52];
-bool visited[52];
+int N;
+int flowers[100];
 
 int main() {
-    ifstream fin ("circlecross.in");
-    ofstream fout ("circlecross.out");
-    for (int i = 0; i < 52; i++) fin >> arr[i];
-    for (int i = 0; i < 51; i++){
-        if (visited[arr[i] - 'A']) continue;
-        for (int j = 0; j < 52; j++) freq[j] = 0;
-        for (int k = i + 1; k < 52; k++){
-            if (arr[k] == arr[i]) break;
-            else freq[arr[k] - 'A']++;
-        }
-        for (int l = 0; l < 52; l++) if (freq[l] == 1) ans++;
-        visited[arr[i] - 'A'] = true;
+    cin >> N;
+    for (int i = 0; i < N; i++){
+        cin >> flowers[i];
     }
-    fout << ans/2 << "\n";
+    int ans = 0;
+    for (int i = 0; i < N; i++){
+        for (int j = 0; j < N; j++){
+            if (j>=i){
+                int sum_petal = 0, num_flower = 0, sub_set[j-i], okay = false;
+                for (int k = i; k <= j; k++){
+                    sum_petal += flowers[k];
+                    num_flower++;
+                    sub_set[k-i] = flowers[k];
+                }
+                
+                if (sum_petal/num_flower*num_flower == sum_petal){ 
+                    for (int m = 0; m <= j-i; m++){
+
+                        if (sub_set[m] == sum_petal/num_flower) {
+                            okay = true;
+                        }
+                    }
+                    if (okay) ans++;
+                }
+            }
+        }
+    }
+    cout << ans << "\n";
     return 0;
 }

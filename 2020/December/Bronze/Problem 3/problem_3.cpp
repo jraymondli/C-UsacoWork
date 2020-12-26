@@ -1,26 +1,50 @@
-//24 minutes
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 using namespace std;
 
-int ans = 0, freq[52];
-char arr[52];
-bool visited[52];
+int N, cows[50][3], data[50];
+char temp;
 
 int main() {
-    ifstream fin ("circlecross.in");
-    ofstream fout ("circlecross.out");
-    for (int i = 0; i < 52; i++) fin >> arr[i];
-    for (int i = 0; i < 51; i++){
-        if (visited[arr[i] - 'A']) continue;
-        for (int j = 0; j < 52; j++) freq[j] = 0;
-        for (int k = i + 1; k < 52; k++){
-            if (arr[k] == arr[i]) break;
-            else freq[arr[k] - 'A']++;
-        }
-        for (int l = 0; l < 52; l++) if (freq[l] == 1) ans++;
-        visited[arr[i] - 'A'] = true;
+    for (int i = 0; i < 50; i++){
+        data[i] = 1000000000;
     }
-    fout << ans/2 << "\n";
+    cin >> N;
+    for (int i = 0; i < N; i++){
+        cin >> temp;
+        if (temp == 'E'){
+            cows[i][0] = 0;
+        } else {
+            cows[i][0] = 1;
+        }
+        cin >> cows[i][1] >> cows[i][2];
+    }
+    for (int i = 0; i < N; i++){
+        for (int j = 0; j < N; j++){
+            if (i != j){
+                if(cows[i][0] == 0){
+                    if(cows[j][0] == 0){//east east
+                        if (cows[j][1] > cows[i][1] & cows[j][2] == cows[i][2] & abs(cows[j][1] - cows[i][1]) < data[i]) data[i] = abs(cows[j][1] - cows[i][1]);
+                    } else {//east north
+                        if (abs(cows[i][1] - cows[j][1]) > abs(cows[i][2] - cows[j][2]) & abs(cows[j][1] - cows[i][1]) < data[i]) data[i] = abs(cows[j][1] - cows[i][1]);
+                    }
+                } else {
+                    if(cows[j][0] == 0){//north east
+                        if (abs(cows[i][1] - cows[j][1]) < abs(cows[i][2] - cows[j][2]) & abs(cows[j][2] - cows[i][2]) < data[i]) data[i] = abs(cows[j][2] - cows[i][2]);
+                    } else {//north north
+                        if (cows[j][2] > cows[i][2] & cows[j][1] == cows[i][1] & abs(cows[j][2] - cows[i][2]) < data[i]) data[i] = abs(cows[j][2] - cows[i][2]);
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < N; i++){
+        if (data[i] == 1000000000){
+            cout << "Infinity\n";
+        } else {
+            cout << data[i] << "\n";
+        }
+    }
     return 0;
 }

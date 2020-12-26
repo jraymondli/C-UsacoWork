@@ -1,26 +1,33 @@
-//24 minutes
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 using namespace std;
 
-int ans = 0, freq[52];
-char arr[52];
-bool visited[52];
+int data[7];
 
 int main() {
-    ifstream fin ("circlecross.in");
-    ofstream fout ("circlecross.out");
-    for (int i = 0; i < 52; i++) fin >> arr[i];
-    for (int i = 0; i < 51; i++){
-        if (visited[arr[i] - 'A']) continue;
-        for (int j = 0; j < 52; j++) freq[j] = 0;
-        for (int k = i + 1; k < 52; k++){
-            if (arr[k] == arr[i]) break;
-            else freq[arr[k] - 'A']++;
-        }
-        for (int l = 0; l < 52; l++) if (freq[l] == 1) ans++;
-        visited[arr[i] - 'A'] = true;
+    for (int i = 0; i < 7; i++){
+        cin >> data[i];
     }
-    fout << ans/2 << "\n";
+    for (int i = 0; i < 7; i++){
+        for (int j = 0; j < 7; j++){
+            for (int k = 0; k < 7; k++){
+                int a = 0, b = 0, c = 0, rest_sorted[7] = {0, 0, 0, 0, 0, 0, 0};
+                a=data[i];
+                b=data[j];
+                c=data[k];
+                for (int l = 0; l < 7; l++){
+                    if (l != i & l != j & l != k){
+                        rest_sorted[l] = data[l];
+                    }
+                }
+                sort(rest_sorted, rest_sorted+7);
+                if (rest_sorted[3] == a+b & rest_sorted[4] == a+c & rest_sorted[5] == b+c & rest_sorted[6] == a+b+c){
+                    cout << a << " " << b << " " << c << "\n";
+                    return 0;
+                }
+            }
+        }
+    }
     return 0;
 }

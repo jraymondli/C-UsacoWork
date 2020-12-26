@@ -3,7 +3,6 @@ using namespace std;
 
 int main()
 {
-    int i;
-    cin >> i;
+    float i = 1.5;
     cout << i << "\n";
 }
