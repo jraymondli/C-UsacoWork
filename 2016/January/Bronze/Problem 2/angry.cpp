@@ -1,4 +1,4 @@
-//142 minutes
+//42 minutes
 #include <iostream>
 #include <fstream>
 #include <algorithm>
