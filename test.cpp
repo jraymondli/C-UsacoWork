@@ -3,6 +3,6 @@ using namespace std;
 
 int main()
 {
-    float i = 1.5;
-    cout << i << "\n";
+    int i[3] = {1, 2, 3};
+    cout << i[-1] << "\n";
 }
