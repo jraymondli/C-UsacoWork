@@ -22,12 +22,11 @@ int main() {
         
         for (int i = 0; i < K; i++) {
             
-            set<int> a = uniques[positions[swaps[i][0]-1]-1], b = uniques[positions[swaps[i][1]-1]-1];
-            int x=positions[swaps[i][0]-1], y=positions[swaps[i][1]-1];
+            int a = uniques[positions[swaps[i][0]-1]-1].size(), b = uniques[positions[swaps[i][1]-1]-1].size(), x=positions[swaps[i][0]-1], y=positions[swaps[i][1]-1];
 
             uniques[positions[swaps[i][0]-1]-1].insert(swaps[i][1]);
             uniques[positions[swaps[i][1]-1]-1].insert(swaps[i][0]);
-            if (a.size() != uniques[positions[swaps[i][0]-1]-1].size() or b.size() != uniques[positions[swaps[i][1]-1]-1].size()){
+            if (a != uniques[positions[swaps[i][0]-1]-1].size() or b != uniques[positions[swaps[i][1]-1]-1].size()){
                 changed = 1;
             }
             positions[swaps[i][0]-1] = y;
