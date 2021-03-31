@@ -1,4 +1,4 @@
-// C++ program to implement recursive Binary Search 
+// C++ program to implement the iterative Binary Search 
 #include <iostream> 
 using namespace std; 
   
